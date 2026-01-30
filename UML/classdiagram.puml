@@ -1,0 +1,17 @@
+@startuml
+
+class Book
+class User
+class Library
+class Transaction
+
+User <|-- Member
+User <|-- Librarian
+
+Library *-- Book
+Library o-- User
+
+User -- Transaction
+Book -- Transaction
+
+@enduml

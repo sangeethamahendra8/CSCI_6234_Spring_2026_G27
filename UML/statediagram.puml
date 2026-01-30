@@ -1,0 +1,27 @@
+@startuml
+
+[*] --> Available
+
+Available : Book is available in library
+
+Available --> Reserved : User reserves book
+Reserved : Book is reserved
+
+Reserved --> Issued : Book issued to user
+Reserved --> Available : Reservation cancelled
+
+Available --> Issued : Direct issue
+
+Issued : Book is with user
+
+Issued --> Overdue : Due date exceeded
+Overdue : Fine applicable
+
+Overdue --> Returned : Book returned late
+Issued --> Returned : Book returned on time
+
+Returned : Book returned
+
+Returned --> Available : Status updated
+
+@enduml

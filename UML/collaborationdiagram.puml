@@ -1,0 +1,16 @@
+@startuml
+
+object User
+object LibrarySystem
+object Book
+object Transaction
+
+User -> LibrarySystem : requestBook()
+LibrarySystem -> Book : checkAvailability()
+Book -> LibrarySystem : availabilityStatus()
+
+LibrarySystem -> Transaction : createTransaction()
+Transaction -> Book : updateStatus()
+LibrarySystem -> User : confirmIssue()
+
+@enduml

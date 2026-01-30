@@ -1,0 +1,18 @@
+@startuml
+
+:Start;
+:User selects operation;
+:Search book;
+:Check availability;
+
+if (Book available?) then (Yes)
+  :Issue book;
+else (No)
+  :Display not available message;
+endif
+
+:Return book;
+:Update book status;
+:End;
+
+@enduml

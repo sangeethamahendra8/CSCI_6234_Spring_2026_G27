@@ -1,0 +1,20 @@
+@startuml
+
+package "Library Management System" {
+
+  [User Interface]
+  [Book Management]
+  [User Management]
+  [Transaction Management]
+  [Database]
+
+  [User Interface] --> [Book Management]
+  [User Interface] --> [User Management]
+  [User Interface] --> [Transaction Management]
+
+  [Book Management] --> [Database]
+  [User Management] --> [Database]
+  [Transaction Management] --> [Database]
+}
+
+@enduml
