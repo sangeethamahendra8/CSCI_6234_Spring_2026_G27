@@ -1,0 +1,13 @@
+@startuml
+
+actor Librarian
+actor Member
+
+Librarian --> (Manage Books)
+Librarian --> (Manage Users)
+
+Member --> (Search Books)
+Member --> (Issue Book)
+Member --> (Return Book)
+
+@enduml
