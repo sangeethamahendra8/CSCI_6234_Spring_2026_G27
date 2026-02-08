@@ -1,0 +1,27 @@
+@startuml
+title Robustness Diagram — Fine Settlement
+skinparam style strictuml
+left to right direction
+
+actor Member
+actor "Payment Service" as Pay
+
+boundary "Pay Fine Page" as B1
+boundary "Payment Gateway" as B2
+
+control "Payment Controller" as C1
+
+entity "Fine" as E1
+entity "Payment" as E2
+
+Member --> B1
+B1 --> C1
+C1 --> E1 : amount
+C1 --> B2 : request payment
+B2 --> Pay
+Pay --> B2
+B2 --> C1
+C1 --> E2 : record
+C1 --> B1 : receipt
+
+@enduml
