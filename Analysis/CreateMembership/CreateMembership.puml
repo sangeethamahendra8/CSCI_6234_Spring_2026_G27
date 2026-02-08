@@ -1,0 +1,20 @@
+@startuml
+title Robustness Diagram — Create Membership
+skinparam style strictuml
+left to right direction
+
+actor "Library Staff" as Staff
+
+boundary "Member Registration Form" as B1
+control "Membership Controller" as C1
+
+entity "MemberAccount" as E1
+entity "UserCredentials" as E2
+
+Staff --> B1
+B1 --> C1 : submit details
+C1 --> E1 : create member
+C1 --> E2 : create login
+C1 --> B1 : member id + success
+
+@enduml
