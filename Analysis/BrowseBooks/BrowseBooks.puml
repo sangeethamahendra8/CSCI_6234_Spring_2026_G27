@@ -1,0 +1,18 @@
+@startuml
+skinparam style strictuml
+left to right direction
+
+actor Member
+
+boundary "Catalog Search Page" as B1
+control "Browse Controller" as C1
+entity "Catalog" as E1
+entity "Book" as E2
+
+Member --> B1
+B1 --> C1 : search request
+C1 --> E1 : find books
+E1 --> E2 : book list
+C1 --> B1 : display results
+
+@enduml
