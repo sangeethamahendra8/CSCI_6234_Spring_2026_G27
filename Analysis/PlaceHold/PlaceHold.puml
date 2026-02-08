@@ -1,0 +1,20 @@
+@startuml
+title Robustness Diagram — Place Hold
+skinparam style strictuml
+left to right direction
+
+actor Member
+
+boundary "Hold Request Page" as B1
+control "Hold Controller" as C1
+
+entity "HoldRequest" as E1
+entity "Book" as E2
+
+Member --> B1
+B1 --> C1
+C1 --> E2 : validate
+C1 --> E1 : create hold
+C1 --> B1 : confirmation
+
+@enduml
