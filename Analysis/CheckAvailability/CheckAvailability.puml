@@ -1,0 +1,19 @@
+@startuml
+title Robustness Diagram — Check Availability
+skinparam style strictuml
+left to right direction
+
+actor Member
+
+boundary "Book Details Page" as B1
+control "Availability Controller" as C1
+entity "BookItem" as E1
+entity "Loan" as E2
+
+Member --> B1
+B1 --> C1 : check availability
+C1 --> E1 : load items
+C1 --> E2 : active loans
+C1 --> B1 : show status
+
+@enduml
