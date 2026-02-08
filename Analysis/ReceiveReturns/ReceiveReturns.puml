@@ -1,0 +1,25 @@
+@startuml
+title Robustness Diagram — Receive Returns
+skinparam style strictuml
+left to right direction
+
+actor "Library Staff" as Staff
+
+boundary "Return Desk Screen" as B1
+control "Receive Returns Controller" as C1
+
+entity "Loan" as E1
+entity "BookItem" as E2
+entity "Fine" as E3
+entity "Policy" as E4
+
+Staff --> B1
+B1 --> C1 : scan barcode
+C1 --> E1 : find active loan
+C1 --> E1 : close loan
+C1 --> E4 : compute overdue
+C1 --> E3 : create fine if needed
+C1 --> E2 : mark available
+C1 --> B1 : receipt
+
+@enduml
