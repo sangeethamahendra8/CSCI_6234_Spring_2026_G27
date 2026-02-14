@@ -1,0 +1,58 @@
+@startuml
+title Domain Model — Library Management System
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+
+class Person {
+  personId : int
+  name : string
+}
+
+class Member {
+  membershipDate : date
+}
+
+class Librarian {
+  employeeId : int
+}
+
+Person <|-- Member
+Person <|-- Librarian
+
+class Book {
+  isbn : string
+  title : string
+}
+
+class BookCopy {
+  copyId : int
+  status : string
+}
+
+class Loan {
+  loanDate : date
+  dueDate : date
+}
+
+class Fine {
+  amount : double
+}
+
+class Reservation {
+  reservationDate : date
+}
+
+class Payment {
+  paymentDate : date
+  method : string
+}
+
+Book "1" -- "many" BookCopy
+Member "1" -- "many" Loan
+Loan "1" -- "1" BookCopy
+Loan "0..1" -- "1" Fine
+Fine "1" -- "1" Payment
+Member "1" -- "many" Reservation
+Reservation "1" -- "1" Book
+
+@enduml
