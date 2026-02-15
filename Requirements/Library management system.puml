@@ -1,0 +1,44 @@
+@startuml
+left to right direction
+
+actor Member
+actor "Library Staff" as Staff
+actor "System Admin" as Admin
+
+rectangle "Digital Library System" {
+
+  (AccountOverview)
+  (Approve Loan)
+  (Browse Books)
+  (Check Availability)
+  (Create Membership)
+  (Domain Model)
+  (Extend Loan)
+  (Fine Settlement)
+  (ManageBook Catalog)
+  (Place Hold)
+  (Receive Returns)
+  (Request Borrow)
+  (Return Item)
+}
+
+Member --> (Browse Books)
+Member --> (Check Availability)
+Member --> (Place Hold)
+Member --> (Request Borrow)
+Member --> (Return Item)
+Member --> (Extend Loan)
+Member --> (AccountOverview)
+Member --> (Fine Settlement)
+
+(Request Borrow) ..> (Approve Loan) : <<include>>
+(Return Item) ..> (Receive Returns) : <<include>>
+
+Staff --> (Approve Loan)
+Staff --> (Receive Returns)
+Staff --> (ManageBook Catalog)
+Staff --> (Create Membership)
+
+Admin --> (Domain Model)
+
+@enduml
