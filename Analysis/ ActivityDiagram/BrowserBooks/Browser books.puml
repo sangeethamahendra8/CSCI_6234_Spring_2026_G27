@@ -1,0 +1,30 @@
+@startuml
+title Activity Diagram - Browse Books
+skinparam style strictuml
+
+/' TEXT DESCRIPTION (Steps)
+1. Member opens the catalog page.
+2. Member enters keywords/filters.
+3. System validates input.
+4. System searches the catalog.
+5. If results exist, system displays the list; otherwise shows "No results".
+6. Member either selects a book to view details or ends browsing.
+'/
+
+start
+:Open catalog page;
+:Enter keywords/filters;
+if (Input valid?) then (Yes)
+  :Search catalog;
+  if (Results found?) then (Yes)
+    :Display results list;
+  else (No)
+    :Display "No results";
+  endif
+  :Select a book or end browsing;
+else (No)
+  :Show validation error;
+endif
+stop
+
+@enduml
