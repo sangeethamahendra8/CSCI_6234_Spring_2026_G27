@@ -1,0 +1,38 @@
+@startuml
+title Activity Diagram - Extend Loan
+skinparam style strictuml
+
+/' TEXT DESCRIPTION (Steps)
+1. Member selects an active loan and requests renewal.
+2. System loads the loan details.
+3. System checks if the loan is eligible (active and not overdue).
+4. System checks renewal policy rules.
+5. System checks whether the related book has an active reservation.
+6. If no reservation exists and policy allows, system updates due date.
+7. System shows confirmation; otherwise shows rejection reason.
+'/
+
+start
+:Select active Loan and request renewal;
+:Load Loan details;
+
+if (Eligible for renewal?) then (Yes)
+  :Check renewal policy;
+  if (Policy allows?) then (Yes)
+    :Check if Book is reserved;
+    if (Reservation exists?) then (Yes)
+      :Reject renewal (Book reserved);
+    else (No)
+      :Update due date;
+      :Increment renewal count;
+      :Show renewal confirmation;
+    endif
+  else (No)
+    :Reject renewal (Policy rule);
+  endif
+else (No)
+  :Reject renewal (Not eligible);
+endif
+
+stop
+@enduml
