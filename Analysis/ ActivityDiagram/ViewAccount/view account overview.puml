@@ -1,0 +1,22 @@
+@startuml
+title Activity Diagram - View Account Overview
+skinparam style strictuml
+
+/' TEXT DESCRIPTION (Steps)
+1. Member opens account dashboard.
+2. System retrieves member profile.
+3. System retrieves active loans and due dates.
+4. System retrieves fines and balance.
+5. System retrieves reservations.
+6. System displays the dashboard.
+'/
+
+start
+:Open account dashboard;
+:Retrieve member profile;
+:Retrieve active Loans;
+:Retrieve Fines and balance;
+:Retrieve Reservations;
+:Display dashboard;
+stop
+@enduml
