@@ -1,0 +1,31 @@
+@startuml
+title Activity Diagram - Pay Fine
+skinparam style strictuml
+
+/' TEXT DESCRIPTION (Steps)
+1. Member opens fines list.
+2. Member selects a fine to pay.
+3. System displays amount and payment methods.
+4. Member confirms payment.
+5. System sends payment request to payment service.
+6. If payment succeeds, system records payment and marks fine paid.
+7. System shows receipt; otherwise shows failure message.
+'/
+
+start
+:Open fines list;
+:Select Fine to pay;
+:Display amount and methods;
+:Confirm payment;
+:Send payment request to Payment Service;
+
+if (Payment successful?) then (Yes)
+  :Record Payment;
+  :Mark Fine as Paid;
+  :Show receipt;
+else (No)
+  :Show payment failed;
+endif
+
+stop
+@enduml
