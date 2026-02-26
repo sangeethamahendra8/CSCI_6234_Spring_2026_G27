@@ -1,0 +1,45 @@
+@startuml
+title Activity Diagram - Request Borrow
+skinparam style strictuml
+
+/' TEXT DESCRIPTION (Steps)
+1. Member selects a book copy and clicks Borrow.
+2. System checks member status.
+3. System checks borrowing policy (loan limit).
+4. System checks copy availability.
+5. System creates a borrow request.
+6. Librarian reviews the request.
+7. If approved, system creates a loan and updates copy status.
+8. System notifies the member of approval or denial.
+'/
+
+start
+:Select book copy and click Borrow;
+:Check member status;
+
+if (Member active?) then (Yes)
+  :Check borrowing policy;
+  if (Within limit?) then (Yes)
+    :Check copy availability;
+    if (Copy available?) then (Yes)
+      :Create borrow request;
+      :Librarian reviews request;
+      if (Approved?) then (Yes)
+        :Create Loan;
+        :Update BookCopy status to CheckedOut;
+        :Notify member Approved;
+      else (No)
+        :Notify member Denied;
+      endif
+    else (No)
+      :Show Copy not available;
+    endif
+  else (No)
+    :Show Loan limit exceeded;
+  endif
+else (No)
+  :Show Account blocked or inactive;
+endif
+
+stop
+@enduml
