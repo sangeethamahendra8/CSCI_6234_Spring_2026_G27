@@ -1,0 +1,32 @@
+@startuml
+title Activity Diagram - Return Item
+skinparam style strictuml
+
+/' TEXT DESCRIPTION (Steps)
+1. Member initiates return and provides the book copy.
+2. Librarian scans the copy barcode.
+3. System finds the active loan.
+4. System closes the loan.
+5. System updates the copy status to Available.
+6. System checks whether the loan is overdue.
+7. If overdue, system calculates and creates a fine.
+8. System shows or prints the return receipt.
+'/
+
+start
+:Initiate return (provide book copy);
+:Scan copy barcode;
+:Find active Loan;
+:Close Loan;
+:Update BookCopy status to Available;
+
+if (Overdue?) then (Yes)
+  :Calculate fine;
+  :Create Fine record;
+else (No)
+  :No fine;
+endif
+
+:Show or print return receipt;
+stop
+@enduml
