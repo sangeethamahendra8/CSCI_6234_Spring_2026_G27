@@ -1,0 +1,33 @@
+@startuml
+title Activity Diagram - Place Hold
+skinparam style strictuml
+
+/' TEXT DESCRIPTION (Steps)
+1. Member selects a book and requests a hold.
+2. System checks member status.
+3. System checks hold limit policy.
+4. If allowed, system creates a reservation.
+5. System confirms hold placement and queue position.
+6. When a copy becomes available, system sends notification.
+'/
+
+start
+:Select Book and request hold;
+:Check member status;
+
+if (Member active?) then (Yes)
+  :Check hold limit policy;
+  if (Within limit?) then (Yes)
+    :Create Reservation;
+    :Show confirmation and queue position;
+    :Wait for copy availability;
+    :Send hold available notification;
+  else (No)
+    :Show hold limit exceeded;
+  endif
+else (No)
+  :Show account blocked or inactive;
+endif
+
+stop
+@enduml
