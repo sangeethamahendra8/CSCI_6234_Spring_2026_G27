@@ -1,0 +1,83 @@
+@startuml
+title Class Diagram - Library Management System (Simple)
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+
+'========================
+' PEOPLE (Inheritance)
+'========================
+class Person {
+  personId : int
+  name : string
+  +getName() : string
+}
+
+class Member {
+  status : string
+  +isActive() : bool
+}
+
+class Librarian {
+  employeeId : int
+  +approveLoan() : bool
+}
+
+Person <|-- Member
+Person <|-- Librarian
+
+'========================
+' INVENTORY
+'========================
+class Book {
+  isbn : string
+  title : string
+  +getTitle() : string
+}
+
+class BookCopy {
+  copyId : int
+  status : string
+  +isAvailable() : bool
+}
+
+Book "1" -- "0..*" BookCopy : hasCopies
+
+'========================
+' TRANSACTIONS
+'========================
+class Loan {
+  loanDate : date
+  dueDate : date
+  +close() : void
+}
+
+class Reservation {
+  reservationDate : date
+  +cancel() : void
+}
+
+class Fine {
+  amount : double
+  isPaid : bool
+  +markPaid() : void
+}
+
+class Payment {
+  amount : double
+  method : string
+  +getAmount() : double
+}
+
+'========================
+' ASSOCIATIONS (Named)
+'========================
+Member "1" -- "0..*" Loan : borrows
+Loan "1" -- "1" BookCopy : covers
+
+Member "1" -- "0..*" Reservation : places
+Reservation "1" -- "1" Book : reserves
+
+Loan "0..1" -- "1" Fine : generates
+Fine "0..1" -- "1" Payment : isPaidBy
+
+@enduml
