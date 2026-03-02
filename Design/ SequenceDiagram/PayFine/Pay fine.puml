@@ -1,0 +1,19 @@
+@startuml
+title Sequence Diagram - Pay Fine
+
+actor Member
+boundary "Payment UI" as UI
+control "Payment Service" as S
+entity "Fine" as F
+entity "Payment" as P
+
+Member -> UI : payFine(fineId)
+UI -> S : payFine(fineId, method)
+S -> F : getAmount()
+F --> S : amount
+S -> P : record(amount, method)
+S -> F : markPaid()
+S --> UI : receipt()
+UI --> Member : showReceipt()
+
+@enduml
