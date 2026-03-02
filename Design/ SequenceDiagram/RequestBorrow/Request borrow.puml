@@ -1,0 +1,36 @@
+@startuml
+title Sequence Diagram - Request Borrow
+
+actor Member
+actor Librarian
+boundary "Borrow UI" as UI
+control "Loan Service" as S
+entity "Member" as M
+entity "BookCopy" as C
+entity "Loan" as L
+
+Member -> UI : requestBorrow(copyId)
+UI -> S : requestBorrow(memberId, copyId)
+S -> M : isActive()
+M --> S : yes/no
+
+alt inactive
+  S --> UI : reject()
+  UI --> Member : showError()
+else active
+  S -> C : isAvailable()
+  C --> S : yes/no
+  alt not available
+    S --> UI : reject()
+    UI --> Member : showError()
+  else available
+    Librarian -> UI : approve()
+    UI -> S : approveBorrow(memberId, copyId)
+    S -> L : createLoan()
+    S -> C : setStatus(CheckedOut)
+    S --> UI : confirmation()
+    UI --> Member : showConfirmation()
+  end
+end
+
+@enduml
