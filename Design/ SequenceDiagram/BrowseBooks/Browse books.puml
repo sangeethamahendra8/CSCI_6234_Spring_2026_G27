@@ -1,0 +1,16 @@
+@startuml
+title Sequence Diagram - Browse Books
+
+actor Member
+boundary "Catalog UI" as UI
+control "Catalog Service" as S
+entity "Book" as Book
+
+Member -> UI : enterQuery(q)
+UI -> S : search(q)
+S -> Book : findByQuery(q)
+Book --> S : results
+S --> UI : results
+UI --> Member : displayResults()
+
+@enduml
