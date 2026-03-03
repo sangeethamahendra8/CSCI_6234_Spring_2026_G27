@@ -1,0 +1,16 @@
+@startuml
+title Sequence Diagram - Extend Loan
+
+actor Member
+boundary "Renew UI" as UI
+control "Renew Service" as S
+entity "Loan" as L
+
+Member -> UI : renew(loanId)
+UI -> S : renewLoan(loanId)
+S -> L : extendDueDate()
+L --> S : newDueDate
+S --> UI : confirmation(newDueDate)
+UI --> Member : showConfirmation()
+
+@enduml
