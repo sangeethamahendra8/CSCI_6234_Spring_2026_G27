@@ -1,0 +1,16 @@
+@startuml
+title Sequence Diagram - Place Hold
+
+actor Member
+boundary "Hold UI" as UI
+control "Hold Service" as S
+entity "Reservation" as R
+
+Member -> UI : placeHold(bookId)
+UI -> S : createHold(memberId, bookId)
+S -> R : create()
+R --> S : reservationId
+S --> UI : confirmation()
+UI --> Member : showConfirmation()
+
+@enduml
