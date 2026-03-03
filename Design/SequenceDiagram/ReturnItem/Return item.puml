@@ -1,0 +1,27 @@
+@startuml
+title Sequence Diagram - Return Item
+
+actor Librarian
+boundary "Return UI" as UI
+control "Return Service" as S
+entity "Loan" as L
+entity "BookCopy" as C
+entity "Fine" as F
+
+Librarian -> UI : scanCopy(copyId)
+UI -> S : returnCopy(copyId)
+S -> L : findActiveLoan(copyId)
+L --> S : loan
+S -> L : close()
+S -> C : setStatus(Available)
+
+alt overdue
+  S -> F : createFine(amount)
+  S --> UI : returnDone(withFine)
+else not overdue
+  S --> UI : returnDone(noFine)
+end
+
+UI --> Librarian : showReceipt()
+
+@enduml
